@@ -3,18 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactoMail;
 
 class ContactoController extends Controller
 {
-    public function mostrarFormulario()
-    {
-        return view('contacto');
-    }
-
     public function enviar(Request $request)
     {
-        // ... (tu código para enviar el correo electrónico) ...
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:100',
+            'email' => 'required|email|max:100',
+            'mensaje' => 'required|string|max:1000',
+        ]);
+
+        // Aca se puede hacer lo que queramos con los datos: enviar email o guardar
+
+        return back()->with('success', '¡Gracias por contactarnos!');
     }
 }

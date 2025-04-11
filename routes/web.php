@@ -1,18 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController; // Asegúrate de que esta línea esté presente
-use App\Http\Controllers\ServiciosController; // Asegúrate de que esta línea esté presente
-
-
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\ContactoController;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/servicios', [ServiciosController::class, 'index']);
-Route::get('/servicios/{servicio}', [ServiciosController::class, 'show']);
+Route::get('/conocenos', function () {
+    return view('conocenos');
+})->name('conocenos');
 
-Route::post('/contacto/enviar', [ContactoController::class, 'enviar'])->name('contacto.enviar');
-Route::get('/contacto', [ContactoController::class, 'mostrarFormulario'])->name('contacto');
+Route::get('/servicios', function () {
+    return view('servicios');
+})->name('servicios');
+
+Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
