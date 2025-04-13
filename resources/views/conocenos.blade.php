@@ -14,12 +14,16 @@
         </div>
     </header>
 
-    <section class="container mx-auto px-4 py-12">
-        <div class="grid md:grid-cols-2 gap-8 items-center">
-            <div>
-                <h2 class="text-2xl font-bold mb-4">Nuestra Historia</h2>
-                <p class="mb-4">Somos un equipo apasionado por el bienestar y el cuidado personal. Desde nuestros inicios, nos hemos enfocado en brindar experiencias relajantes y revitalizantes para cada uno de nuestros clientes.</p>
-                <p class="mb-4">Creemos que cuidar de uno mismo no es un lujo, es una necesidad. Por eso creamos espacios, terapias y servicios pensados para restaurar el cuerpo y la mente.</p>
+    <section class="px-4 py-12">
+        <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+            <div class="text-justify">
+                <h2 class="text-2xl font-bold mb-4">¿Qué es sentirse bien spa?</h2>
+                <p class="mb-4">Un equipo guiado por la experiencia, comprometido con tu bienestar</p>
+                <p class="mb-4">En Sentirse Bien creemos que la belleza y el bienestar nacen del equilibrio entre el cuidado profesional y la calidez humana.</p>
+                <p class="mb-4">Fundado por la <strong>Dra. Felicidad</strong>, reconocida profesional con una amplia trayectoria en el ámbito de la salud y la estética, nuestro spa es el resultado de años de dedicación, formación y pasión por acompañar a las personas en su camino hacia el bienestar integral.</p>
+                <p class="mb-4">La Dra. Felicidad lidera y supervisa personalmente a un equipo de profesionales altamente cualificados, comprometidos con brindar una atención de excelencia en cada tratamiento. Cada integrante de nuestro staff comparte los mismos valores: vocación de servicio, empatía, profesionalismo y amor por lo que hacemos.</p>
+                <p class="mb-4">En Sentirse Bien, combinamos técnicas innovadoras, experiencia clínica y un enfoque personalizado para que cada visita sea una experiencia transformadora.</p>
+                <p class="mb-4">Estamos acá para acompañarte a sentirte bien, por dentro y por fuera.</p>
             </div>
             <div>
                 <img src="/imagenes/equipo.jpg" alt="Nuestro equipo" class="rounded-lg shadow-md">

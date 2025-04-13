@@ -32,7 +32,7 @@
         }
 
         #section2, #section3 {
-            background-color: #f0f8ff;
+            background-color: #fbb6ce;
         }
 
         .btn-nav {
@@ -121,7 +121,7 @@
 
     <section id="section2">
         <div class="text-center">
-            <h2>Contenido de la sección 2</h2>
+            <h2>Contenido en construcción: aquí encontraras paquetes y promociones</h2>
         </div>
     </section>
 
@@ -156,6 +156,7 @@
 
         <div class="text-center mt-8">
             <!-- Redes sociales o contenido adicional -->
+             <h3>Redes sociales o contenido adicional</h3>
         </div>
     </section>
 
@@ -191,7 +192,7 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button id="close-modal" type="button" class="w-full inline-flex justify-center rounded-md bg-red-600 text-white font-medium px-4 py-2 hover:bg-red-700">
+                    <button id="close-modal" type="button" class="w-full inline-flex justify-center rounded-md bg-pink-500 text-white font-medium px-4 py-2 hover:bg-pink-600">
                         Cerrar
                     </button>
                 </div>
