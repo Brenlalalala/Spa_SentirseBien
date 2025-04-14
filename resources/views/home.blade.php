@@ -31,6 +31,14 @@
             background-attachment: fixed;
         }
 
+                /* Excepción para section2: altura automática según contenido */
+        #section2 {
+            height: auto;
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+            display: block; /* para que el contenido fluya naturalmente */
+        }
+
         #section2, #section3 {
             background-color: #fbb6ce;
         }
@@ -59,14 +67,90 @@
         }
 
         #scrollTopBtn {
+        opacity: 0;
         font-size: 1.5rem;
         line-height: 1;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+        
         }
 
+        .tarjeta-promocion {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .tarjeta-promocion:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .boton-brillante {
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .boton-brillante::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -75%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 100%);
+            transform: skewX(-25deg);
+        }
+
+        .boton-brillante:hover::after {
+            animation: shine 0.75s forwards;
+        }
+
+        @keyframes shine {
+            0% { left: -75%; }
+            100% { left: 125%; }
+        }
+
+        .boton-brillante {
+        position: relative;
+        overflow: hidden;
+        background-size: 200% auto;
+        color: white;
+        animation: brillar 2s linear infinite;
+        }
+
+        @keyframes brillar {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+        }
+
+        .fade-in {
+        opacity: 1 !important;
+        transition: opacity 0.5s ease-in;
+        display: block !important;
+        }
+
+        .fade-out {
+        opacity: 0 !important;
+        transition: opacity 0.5s ease-out;
+        display: none !important;
+        }
+
+        @keyframes float-up-down {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .floating {
+            animation: float-up-down 2s ease-in-out infinite;
+        }
+        
 
     </style>
 </head>
-
 
 <body class="font-sans">
 
@@ -88,10 +172,10 @@
 
             <!-- Menú -->
         <div id="nav-links" class="hidden md:flex space-x-4 items-center">
-            <a href="/conocenos" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white">Conócenos</a>
-            <a href="/servicios" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white">Servicios</a>
-            <a href="#" id="mostrar-contacto" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white">Consultas</a>
-            <a href="#" id="login-button" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white">Iniciar sesión</a>
+            <a href="/conocenos" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white boton-brillante">Conócenos</a>
+            <a href="/servicios" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white boton-brillante">Servicios</a>
+            <a href="#" id="mostrar-contacto" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white boton-brillante">Consultas</a>
+            <a href="#" id="login-button" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white boton-brillante">Iniciar sesión</a>
         </div>
 
 
@@ -119,11 +203,62 @@
 </section>
 
 
-    <section id="section2">
-        <div class="text-center">
-            <h2>Contenido en construcción: aquí encontraras paquetes y promociones</h2>
+<section id="section2" class="py-16 bg-pink-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center text-pink-700 mb-12">Paquetes y Promociones</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Primer paquete -->
+            <div class="tarjeta-promocion bg-white rounded-lg p-2 text-sm">
+                <img src="/imagenes/promocion1.jpg" alt="Masaje Anti-Stress" class="rounded mb-4">
+                <h3 class="text-2xl font-semibold text-pink-600 mb-2">Pack Relax Total</h3>
+                <p class="text-gray-700 mb-4">Incluye Masaje Anti-Stress + Limpieza facial profunda + Yoga grupal.</p>
+                <span class="text-xl font-bold text-pink-700">$35000 ARS</span>
+            </div>
+
+            <!-- Segundo paquete -->
+            <div class="tarjeta-promocion bg-white rounded-lg p-2 text-sm">
+                <img src="/imagenes/promocion2.jpg" alt="Pack Belleza Total" class="rounded mb-4">
+                <h3 class="text-2xl font-semibold text-pink-600 mb-2">Pack Belleza Total</h3>
+                <p class="text-gray-700 mb-4">Incluye Lifting de pestañas + Belleza de manos y pies + Depilación facial.</p>
+                <span class="text-xl font-bold text-pink-700">$40000 ARS</span>
+            </div>
+
+            <!-- Tercer paquete -->
+            <div class="tarjeta-promocion bg-white rounded-lg p-2 text-sm">
+                <img src="/imagenes/promocion3.jpg" alt="Pack Relax y Detox" class="rounded mb-4">
+                <h3 class="text-2xl font-semibold text-pink-600 mb-2">Pack Relax y Detox</h3>
+                <p class="text-gray-700 mb-4">Incluye Masaje descontracturante + Punta de diamante (microexfoliación) + Criofrecuencia facial.</p>
+                <span class="text-xl font-bold text-pink-700">$52000 ARS</span>
+            </div>
+
+            <!-- Cuarto paquete -->
+            <div class="tarjeta-promocion bg-white rounded-lg p-2 text-sm">
+                <img src="/imagenes/promocion4.jpg" alt="Pack Hidro Spa" class="rounded mb-4">
+                <h3 class="text-2xl font-semibold text-pink-600 mb-2">Pack Hidro Spa</h3>
+                <p class="text-gray-700 mb-4">Incluye Hidromasajes grupales + Masaje circulatorio + Limpieza facial profunda.</p>
+                <span class="text-xl font-bold text-pink-700">$45000 ARS</span>
+            </div>
+
+            <!-- Quinto paquete -->
+            <div class="tarjeta-promocion bg-white rounded-lg p-2 text-sm">
+                <img src="/imagenes/promocion5.jpg" alt="Pack Bienestar Corporal" class="rounded mb-4">
+                <h3 class="text-2xl font-semibold text-pink-600 mb-2">Pack Bienestar Corporal</h3>
+                <p class="text-gray-700 mb-4">Incluye Ultracavitación + VelaSlim + Yoga grupal.</p>
+                <span class="text-xl font-bold text-pink-700">$48000 ARS</span>
+            </div>
+
+            <!-- Sexto paquete -->
+            <div class="tarjeta-promocion bg-white rounded-lg p-2 text-sm">
+                <img src="/imagenes/promocion6.jpg" alt="Pack Anti-Stress Premium" class="rounded mb-4">
+                <h3 class="text-2xl font-semibold text-pink-600 mb-2">Pack Anti-Stress Premium</h3>
+                <p class="text-gray-700 mb-4">Incluye Masaje con piedras calientes + Criofrecuencia facial + DermoHealth corporal.</p>
+                <span class="text-xl font-bold text-pink-700">$60000 ARS</span>
+            </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <section id="section3">
         <div id="formulario-contacto" class="container mx-auto p-8 hidden ">
@@ -159,6 +294,9 @@
              <h3>Redes sociales o contenido adicional</h3>
         </div>
     </section>
+
+    
+    <div id="scroll-anchor"></div>
 
     <footer class="bg-gray-200 py-4 text-center">
         <p>&copy; {{ date('Y') }} Sentirse bien. Todos los derechos reservados.</p>
@@ -220,31 +358,33 @@ document.addEventListener('DOMContentLoaded', function () {
         navLinks.classList.toggle('hidden');
     });
 
-    // Header scroll background y scroll top
-    const header = document.getElementById('main-header');
+    // Botón scroll top
     const scrollTopBtn = document.getElementById('scrollTopBtn');
+    const scrollAnchor = document.getElementById('scroll-anchor');
 
-    window.addEventListener('scroll', function () {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-
-        if (scrollTopBtn) {
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.remove('hidden');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                scrollTopBtn.classList.remove('fade-out');
+                scrollTopBtn.classList.add('fade-in', 'floating'); // 👈 le agregamos animación
             } else {
-                scrollTopBtn.classList.add('hidden');
+                scrollTopBtn.classList.remove('fade-in', 'floating');
+                scrollTopBtn.classList.add('fade-out');
             }
-        }
-    });
-
-    if (scrollTopBtn) {
-        scrollTopBtn.addEventListener('click', function () {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-    }
+        }, {
+            root: null,
+            threshold: 0.05
+        });
+
+    observer.observe(scrollAnchor);
+    
+     //  Scroll al top 
+     scrollTopBtn.addEventListener('click', function () {
+    document.getElementById('section1').scrollIntoView({
+        behavior: 'smooth'
+    });
+});
 
     // Modal login
     const loginButton = document.getElementById('login-button');
@@ -260,26 +400,26 @@ document.addEventListener('DOMContentLoaded', function () {
         loginModal.classList.add('hidden');
     });
 
-    // 🔁 Cambiar fondo dinámicamente en section1
+    // Cambiar fondo dinámico en section1
     const fondo = document.getElementById('section1');
-
     const imagenes = [
         '/imagenes/imagen_Fondo.jpeg',
         '/imagenes/fondo1.jpg',
         '/imagenes/fondo2.jpg',
         '/imagenes/fondo3.jpg'
     ];
-
     let indice = 0;
 
     setInterval(() => {
         indice = (indice + 1) % imagenes.length;
         fondo.style.backgroundImage = `url('${imagenes[indice]}')`;
-    }, 5000); // Cambia cada 5 segundos
+    }, 5000);
 });
 </script>
 
-
+<div id="scrollTopBtn" class="fixed bottom-5 right-5 cursor-pointer z-50 fade-out" title="Volver arriba">
+    <img src="/imagenes/flecha-arriba.png" alt="Volver arriba" class="w-12 h-12 drop-shadow-lg">
+</div>
 
 </body>
 
