@@ -43,6 +43,16 @@
             background-color: #fbb6ce;
         }
 
+        #section3 {
+    background-image: url('/imagenes/imagen_contacto.webp');
+    background-size: cover; /* Cubre todo el fondo */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita la repetición de la imagen */
+    filter: brightness(0.9); /* Ajusta el brillo de la imagen */
+           /* ... otros estilos ... */
+}
+
+
         .btn-nav {
             @apply text-white text-xl px-4 py-2 rounded transition duration-300;
             background: rgba(255, 255, 255, 0.1);
@@ -260,40 +270,9 @@
 </section>
 
 
-    <section id="section3">
-        <div id="formulario-contacto" class="container mx-auto p-8 hidden ">
-            <h1 class="text-3xl font-bold mb-6 text-center text-pink-600">Contáctanos</h1>
-
-            <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6">
-                <form action="{{ route('contacto.enviar') }}" method="POST">
-                    @csrf
-                    <div class="mb-4">
-                        <label for="nombre" class="block text-gray-700 text-sm font-bold mb-2">Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" class="w-full px-3 py-2 border rounded" required>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Correo electrónico:</label>
-                        <input type="email" name="email" id="email" class="w-full px-3 py-2 border rounded" required>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="mensaje" class="block text-gray-700 text-sm font-bold mb-2">Mensaje:</label>
-                        <textarea name="mensaje" id="mensaje" rows="4" class="w-full px-3 py-2 border rounded" required></textarea>
-                    </div>
-
-                    <div class="text-center">
-                        <button type="submit" class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">Enviar mensaje</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="text-center mt-8">
-            <!-- Redes sociales o contenido adicional -->
-             <h3>Redes sociales o contenido adicional</h3>
-        </div>
-    </section>
+<section id="section3">
+ @include('contacto')
+</section>
 
     
     <div id="scroll-anchor"></div>
@@ -302,6 +281,7 @@
         <p>&copy; {{ date('Y') }} Sentirse bien. Todos los derechos reservados.</p>
     </footer>
 
+   <!-- Botón login -->
     <div id="login-modal" class="fixed z-50 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -338,25 +318,20 @@
         </div>
     </div>
 
+    
     <script>
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Mostrar/ocultar formulario de contacto
-    const botonMostrarContacto = document.getElementById('mostrar-contacto');
-    const formularioContacto = document.getElementById('formulario-contacto');
+    // Desplazar a la sección de contacto (section3) y mostrar/ocultar formulario
+const botonMostrarContacto = document.getElementById('mostrar-contacto');
+ const formularioContacto = document.getElementById('formulario-contacto');
 
-    botonMostrarContacto.addEventListener('click', function (event) {
-        event.preventDefault();
-        formularioContacto.classList.toggle('hidden');
-    });
+botonMostrarContacto.addEventListener('click', function (event) {
+event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
+//formularioContacto.classList.toggle('hidden'); si no se oculta
+ });
 
-    // Menú hamburguesa móvil
-    const menuToggle = document.getElementById('menu-toggle');
-    const navLinks = document.getElementById('nav-links');
-
-    menuToggle.addEventListener('click', function () {
-        navLinks.classList.toggle('hidden');
-    });
 
     // Botón scroll top
     const scrollTopBtn = document.getElementById('scrollTopBtn');
