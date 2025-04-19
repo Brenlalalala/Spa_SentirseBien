@@ -13,8 +13,8 @@ Route::get('/conocenos', function () {
     return view('conocenos');
 })->name('conocenos');
 
-Route::get('/servicios', function () {
-    return view('servicios');
-})->name('servicios');
+Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios.index');
+
+Route::get('/servicios/{servicio}', [ServiciosController::class, 'show'])->name('servicios.show');
 
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');

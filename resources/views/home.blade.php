@@ -197,9 +197,6 @@
     <div class="flex items-center justify-center h-full">
         <div class="flex flex-col items-center justify-center space-y-6" style="transform: translateY(10%);">
             
-            <!-- LOGO -->
-            <img src="/imagenes/logo.png" alt="Logo Sentirse Bien" class="h-2 w-auto animate-fade-in">
-
             <!-- TÍTULO -->
             <h2 class="text-5xl font-bold text-white text-center" style="text-shadow: 9px 9px 9px rgba(0, 0, 0, 0.5);">SENTIRSE BIEN</h2>
 
