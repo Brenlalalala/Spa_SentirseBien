@@ -11,13 +11,32 @@
 <body class="bg-pink-100 text-gray-800 font-sans">
 
     {{-- HEADER CON LOGO --}}
-    <header class="bg-pink shadow py-4">
-        <div class="container mx-auto px-4">
-            <a href="{{ url('/') }}" class="inline-block">
-                <img src="{{ asset('imagenes/logo.png') }}" alt="Sentirse Bien" class="h-12">
-            </a>
+    <header id="main-header" class="fixed w-full z-50 transition-transform duration-300 bg-opacity-80 backdrop-blur-md">
+    <nav class="px-4 flex items-center justify-between" style="background-color: #fbb6ce; width: 100%;">        <!-- Logo con animación -->
+        <a href="/" class="transform transition-transform duration-500 hover:scale-105">
+            <img src="/imagenes/logo.png" alt="Logo Sentirse Bien" class="h-24 w-auto animate-fade-in">
+        </a>
+
+        <!-- Botón hamburguesa móvil -->
+        <button id="menu-toggle" class="md:hidden text-pink-600 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+        </button>
+
+            <!-- Menú -->
+        <div id="nav-links" class="hidden md:flex space-x-4 items-center">
+            <a href="/conocenos" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white">Conócenos</a>
+            <a href="/servicios" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white">Servicios</a>
+            <a href="#" id="mostrar-contacto" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white">Consultas</a>
+            <a href="#" id="login-button" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white">Iniciar sesión</a>
         </div>
-    </header>
+
+
+    </nav>
+</header >
 
     {{-- SERVICIOS --}}
     @php
@@ -53,11 +72,11 @@
         ];
     @endphp
 
-    <main class="container mx-auto px-4 py-10 space-y-16">
-
+    <main class="container mx-auto px-4 py-10 pt-[160px] space-y-16">
         {{-- SERVICIOS INDIVIDUALES --}}
-        <section>
+        <section class="mt-28">
             <h2 class="text-3xl font-bold text-pink-500 mb-6">Servicios Individuales</h2>
+
 
             @foreach($servicios['individuales'] as $categoria => $items)
                 <div class="mb-10">
@@ -96,6 +115,24 @@
     <footer class="bg-gray-200 text-center py-4 mt-10">
         <p>&copy; {{ date('Y') }} Sentirse Bien. Todos los derechos reservados.</p>
     </footer>
+    <script>
+    let lastScroll = 0;
+    const header = document.getElementById('main-header');
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            // Scroll hacia abajo -> ocultar
+            header.classList.add('-translate-y-full');
+        } else {
+            // Scroll hacia arriba -> mostrar
+            header.classList.remove('-translate-y-full');
+        }
+
+        lastScroll = currentScroll;
+    });
+    </script>
 
 </body>
 

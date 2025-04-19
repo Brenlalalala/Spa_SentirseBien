@@ -18,9 +18,6 @@ class CreateServiciosTable extends Migration
             $table->string('nombre');
             $table->text('descripcion');
             $table->decimal('precio', 8, 2);
-            $table->string('imagen')->nullable();
-            $table->boolean('destacado')->default(false);
-            $table->timestamps();
         });
     }
 

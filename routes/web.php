@@ -18,3 +18,5 @@ Route::get('/servicios', [ServiciosController::class, 'index'])->name('servicios
 Route::get('/servicios/{servicio}', [ServiciosController::class, 'show'])->name('servicios.show');
 
 Route::post('/contacto', [ContactoController::class, 'enviar'])->name('contacto.enviar');
+
+Route::post('/servicios', [ServiciosController::class, 'guardarServicio'])->name('servicios.guardar');
