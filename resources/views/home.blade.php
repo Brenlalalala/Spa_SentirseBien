@@ -319,6 +319,11 @@
     <script>
 document.addEventListener('DOMContentLoaded', function () {
 
+// Para ocultar la barra en sección2
+    const encabezadoPrincipal = document.getElementById('main-header');
+    const seccion2 = document.getElementById('section2');
+
+
     // Desplazar a la sección de contacto (section3) y mostrar/ocultar formulario
 const botonMostrarContacto = document.getElementById('mostrar-contacto');
  const formularioContacto = document.getElementById('formulario-contacto');
@@ -386,6 +391,27 @@ document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
         indice = (indice + 1) % imagenes.length;
         fondo.style.backgroundImage = `url('${imagenes[indice]}')`;
     }, 5000);
+
+
+    // Ocultar barra de navegación en section2
+    const observadorEncabezado = new IntersectionObserver(entradas => {
+        entradas.forEach(entrada => {
+            if (entrada.isIntersecting) {
+                // Si la sección 2 está en la ventana de visualización, oculta la barra de navegación
+                encabezadoPrincipal.classList.add('hidden');
+            } else {
+                // Si la sección 2 no está en la ventana de visualización, muestra la barra de navegación
+                encabezadoPrincipal.classList.remove('hidden');
+            }
+        });
+    }, {
+        root: null, // Observa la ventana de visualización del navegador
+        threshold: 0.5 // Cambia este valor según cuánto de la sección 2 quieres que sea visible para ocultar la barra
+    });
+
+    // Comienza a observar la sección 2
+    observadorEncabezado.observe(seccion2);
+    
 });
 </script>
 
