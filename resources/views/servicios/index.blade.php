@@ -83,9 +83,6 @@
                     <h3 class="text-2xl font-semibold text-pink-600 mb-4">{{ $categoria }}</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($items as $servicio)
-                        @php
-                        $nombreImagen = Str::slug($servicio->nombre) . '.jpg';
-                        @endphp
                         <div class="tarjeta-promocion bg-white rounded-xl p-3 text-sm text-center shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
                                 <img src="{{ asset('img/' . $servicio['img']) }}" alt="{{ $servicio['titulo'] }}" class="w-full h-48 object-cover rounded mb-4">
                                 <h4 class="text-xl font-bold text-pink-600">{{ $servicio['titulo'] }}</h4>
