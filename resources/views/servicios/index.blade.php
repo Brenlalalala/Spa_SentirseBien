@@ -43,7 +43,7 @@
         $servicios = [
             'individuales' => [
                 'Masajes' => [
-                    ['titulo' => 'Masaje Anti-Stress', 'desc' => 'Relaja cuerpo y mente, alivia tensiones.', 'precio' => 8000, 'img' => 'masaje1.jpg'],
+                    ['titulo' => 'Masaje Anti-Stress', 'desc' => 'Relaja cuerpo y mente, alivia tensiones.', 'precio' => 8000, 'img' => 'promocion3.jpg'],
                     ['titulo' => 'Descontracturante', 'desc' => 'Alivio profundo de contracturas musculares.', 'precio' => 8500, 'img' => 'masaje2.jpg'],
                     ['titulo' => 'Con Piedras Calientes', 'desc' => 'Terapia con calor para armonizar energías.', 'precio' => 9000, 'img' => 'piedras.jpg'],
                     ['titulo' => 'Circulatorio', 'desc' => 'Estimula circulación y reduce retención de líquidos.', 'precio' => 8500, 'img' => 'circulatorio.jpg'],
@@ -83,7 +83,10 @@
                     <h3 class="text-2xl font-semibold text-pink-600 mb-4">{{ $categoria }}</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         @foreach($items as $servicio)
-                            <div class="bg-white rounded-lg shadow p-6 text-center">
+                        @php
+                        $nombreImagen = Str::slug($servicio->nombre) . '.jpg';
+                        @endphp
+                        <div class="tarjeta-promocion bg-white rounded-xl p-3 text-sm text-center shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
                                 <img src="{{ asset('img/' . $servicio['img']) }}" alt="{{ $servicio['titulo'] }}" class="w-full h-48 object-cover rounded mb-4">
                                 <h4 class="text-xl font-bold text-pink-600">{{ $servicio['titulo'] }}</h4>
                                 <p class="text-gray-600 mt-2 mb-4">{{ $servicio['desc'] }}</p>
@@ -100,7 +103,7 @@
             <h2 class="text-3xl font-bold text-pink-500 mb-6">Servicios Grupales</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($servicios['grupales'] as $servicio)
-                    <div class="bg-white rounded-lg shadow p-6 text-center">
+                <div class="tarjeta-promocion bg-white rounded-xl p-3 text-sm text-center shadow-md hover:shadow-xl transform hover:scale-105 transition duration-300 ease-in-out">
                         <img src="{{ asset('img/' . $servicio['img']) }}" alt="{{ $servicio['titulo'] }}" class="w-full h-48 object-cover rounded mb-4">
                         <h4 class="text-xl font-bold text-pink-600">{{ $servicio['titulo'] }}</h4>
                         <p class="text-gray-600 mt-2 mb-4">{{ $servicio['desc'] }}</p>
