@@ -184,7 +184,7 @@
         <div id="nav-links" class="hidden md:flex space-x-4 items-center">
             <a href="/conocenos" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white boton-brillante">Conócenos</a>
             <a href="/servicios" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white boton-brillante">Servicios</a>
-            <a href="#" id="mostrar-contacto" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white boton-brillante">Consultas</a>
+            <a href="#" id="ir-a-consultas-nav" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white boton-brillante">Consultas</a>
             <a href="#" id="login-button" class="text-white font-semibold px-4 py-2 rounded transition duration-300 hover:bg-pink-500 hover:text-white boton-brillante">Iniciar sesión</a>
         </div>
 
@@ -316,65 +316,73 @@
     </div>
 
     
-    <script>
-document.addEventListener('DOMContentLoaded', function () {
 
-// Para ocultar la barra en sección2
+<script>
+document.addEventListener('DOMContentLoaded', function () {
     const encabezadoPrincipal = document.getElementById('main-header');
     const seccion2 = document.getElementById('section2');
+    const enlaceConsultasNav = document.getElementById('ir-a-consultas-nav');
 
+    // Desplazar a la sección de contacto (section3) desde el botón "Consultas" de la navegación
+    if (enlaceConsultasNav) {
+        enlaceConsultasNav.addEventListener('click', function (evento) {
+            evento.preventDefault(); // Evita que el enlace intente navegar a "#"
+            document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
 
-    // Desplazar a la sección de contacto (section3) y mostrar/ocultar formulario
-const botonMostrarContacto = document.getElementById('mostrar-contacto');
- const formularioContacto = document.getElementById('formulario-contacto');
+    // Desplazar a la sección de contacto (section3) y mostrar/ocultar formulario (botón dentro de la sección)
+    const botonMostrarContacto = document.getElementById('mostrar-contacto');
+    const formularioContacto = document.getElementById('formulario-contacto');
 
-botonMostrarContacto.addEventListener('click', function (event) {
-event.preventDefault(); // Evita el comportamiento predeterminado del enlace
-document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
-//formularioContacto.classList.toggle('hidden'); si no se oculta
- });
+    if (botonMostrarContacto) {
+        botonMostrarContacto.addEventListener('click', function (evento) {
+            evento.preventDefault(); // Evita el comportamiento predeterminado del enlace
+            document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
+            //formularioContacto.classList.toggle('hidden'); si no se oculta
+        });
+    }
 
+    // Botón scroll arriba
+    const botonScrollArriba = document.getElementById('scrollTopBtn');
+    const puntoAnclajeScroll = document.getElementById('scroll-anchor');
 
-    // Botón scroll top
-    const scrollTopBtn = document.getElementById('scrollTopBtn');
-    const scrollAnchor = document.getElementById('scroll-anchor');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                scrollTopBtn.classList.remove('fade-out');
-                scrollTopBtn.classList.add('fade-in', 'floating'); // 👈 le agregamos animación
+    const observadorScrollArriba = new IntersectionObserver((entradas) => {
+        entradas.forEach(entrada => {
+            if (entrada.isIntersecting) {
+                botonScrollArriba.classList.remove('fade-out');
+                botonScrollArriba.classList.add('fade-in', 'floating'); // 👈 le agregamos animación
             } else {
-                scrollTopBtn.classList.remove('fade-in', 'floating');
-                scrollTopBtn.classList.add('fade-out');
+                botonScrollArriba.classList.remove('fade-in', 'floating');
+                botonScrollArriba.classList.add('fade-out');
             }
         });
-        }, {
-            root: null,
-            threshold: 0.05
-        });
-
-    observer.observe(scrollAnchor);
-    
-     //  Scroll al top 
-     scrollTopBtn.addEventListener('click', function () {
-    document.getElementById('section1').scrollIntoView({
-        behavior: 'smooth'
+    }, {
+        root: null,
+        threshold: 0.05
     });
-});
+
+    observadorScrollArriba.observe(puntoAnclajeScroll);
+
+    //  Scroll al arriba
+    botonScrollArriba.addEventListener('click', function () {
+        document.getElementById('section1').scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
 
     // Modal login
-    const loginButton = document.getElementById('login-button');
-    const loginModal = document.getElementById('login-modal');
-    const closeModal = document.getElementById('close-modal');
+    const botonLogin = document.getElementById('login-button');
+    const modalLogin = document.getElementById('login-modal');
+    const botonCerrarModal = document.getElementById('close-modal');
 
-    loginButton.addEventListener('click', function (e) {
-        e.preventDefault();
-        loginModal.classList.remove('hidden');
+    botonLogin.addEventListener('click', function (evento) {
+        evento.preventDefault();
+        modalLogin.classList.remove('hidden');
     });
 
-    closeModal.addEventListener('click', function () {
-        loginModal.classList.add('hidden');
+    botonCerrarModal.addEventListener('click', function () {
+        modalLogin.classList.add('hidden');
     });
 
     // Cambiar fondo dinámico en section1
@@ -391,7 +399,6 @@ document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
         indice = (indice + 1) % imagenes.length;
         fondo.style.backgroundImage = `url('${imagenes[indice]}')`;
     }, 5000);
-
 
     // Ocultar barra de navegación en section2
     const observadorEncabezado = new IntersectionObserver(entradas => {
@@ -411,9 +418,10 @@ document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
 
     // Comienza a observar la sección 2
     observadorEncabezado.observe(seccion2);
-    
 });
 </script>
+
+
 
 <div id="scrollTopBtn" class="fixed bottom-5 right-5 cursor-pointer z-50 fade-out" title="Volver arriba">
     <img src="/imagenes/flecha-arriba.png" alt="Volver arriba" class="w-12 h-12 drop-shadow-lg">
