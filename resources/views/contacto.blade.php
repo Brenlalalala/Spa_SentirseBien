@@ -3,21 +3,21 @@
 
 
 <div id="formulario-contacto" class="container mx-auto p-8 mt-20">
-    <div class="flex flex-wrap -mx-4">
-        <div class="w-full md:w-1/2 px-4 mt-8">
-            <form action="{{ route('contacto.enviar') }}" method="POST" id="formularioContacto">
+    <div class="flex flex-wrap -mx-4 items-start">
+        <div class="w-full md:w-1/2 px-4 mt-8 flex justify-center">
+            <form action="{{ route('contacto.enviar') }}" method="POST" id="formularioContacto" class="w-full max-w-md">
                 @csrf
                 <div class="mb-8">
-                    <label for="nombre" class="block text-gray-900 text-sm font-bold mb-2">Nombre:</label>
+                    <label for="nombre" class="block text-gray-900 text-sm font-bold mb-2">NOMBRE:</label>
                     <input type="text" name="nombre" id="nombre" class="w-full px-3 py-2 border rounded" required>
                 </div>
                 <div class="mb-4">
-                    <label for="telefono" class="block text-gray-900 text-sm font-bold mb-2">Número de celular:</label>
+                    <label for="telefono" class="block text-gray-900 text-sm font-bold mb-2">NÚMERO DE CELULAR:</label>
                     <input type="tel" name="telefono" id="telefono" class="w-full px-3 py-2 border rounded">
                     <label for="telefono" class="block text-gray-900 text-sm font-bold mb-2">*Sin incluir el número 0 y ni el 15</label>
                 </div>
                 <div class="mb-4">
-                    <label for="mensaje" class="block text-gray-900 text-sm font-bold mb-2">Descripción de consulta:</label>
+                    <label for="mensaje" class="block text-gray-900 text-sm font-bold mb-2">DESCRIPCIÓN DE LA CONSULTA:</label>
                     <textarea name="mensaje" id="mensaje" rows="4" class="w-full px-3 py-2 border rounded" required></textarea>
                 </div>
                 <div class="text-center">
@@ -25,23 +25,23 @@
                 </div>
             </form>
         </div>
-        <div class="w-full md:w-1/2 px-4 mt-20">
-            <div>
-                <h2 class="text-2xl font-bold mb-4">Información de contacto</h2>
-                <p>Dirección: French 414, Ciudad de Resistencia</p>
-                <p>Teléfono: +123 456 7890</p>
-                <p>Redes sociales:</p>
-                <ul class="list-disc list-inside text-lg">
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
-                </ul>
-            </div>
-            <div class="mt-4">
-            </div>
-        </div>
+        <div class="w-full md:w-1/2 px-4 mt-10 md:mt-20 flex justify-center">
+    <div class="bg-white rounded-lg shadow-md p-6 max-w-sm">
+    <h2 class="text-2xl font-bold text-pink-600 mb-4 text-center">Información de contacto</h2>
+        <p class="text-gray-700 mb-2 text-left"><span class="font-semibold">Dirección:</span> French 414, Ciudad de Resistencia</p>
+        <p class="text-gray-700 mb-2 text-left"><span class="font-semibold">Teléfono:</span> +123 456 7890</p>
+        <p class="text-gray-700 mb-2 text-left"><span class="font-semibold">Redes sociales:</span></p>
+        <ul class="list-disc list-inside text-lg text-pink-500 text-left">
+            <li><a href="#" class="hover:text-pink-700">Facebook</a></li>
+            <li><a href="#" class="hover:text-pink-700">Twitter</a></li>
+            <li><a href="#" class="hover:text-pink-700">Instagram</a></li>
+        </ul>
     </div>
-
+    <div class="mt-4">
+    </div>
+</div>
+              
+<!-- Para modal de mensaje recibido / mensaje no enviado -->
     <div id="modalResultado" class="fixed z-10 inset-0 overflow-y-auto hidden">
         <div class="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 transition-opacity" aria-hidden="true">
@@ -55,8 +55,8 @@
                     </div>
                 </div>
                 <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                    <button id="cerrarModal" type="button" class="w-full inline-flex justify-center rounded-md bg-red-600 text-white font-medium px-4 py-2 hover:bg-red-700">
-                        Cerrar
+                    <button id="cerrarModal" type="button" class="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded">  
+                    Cerrar
                     </button>
                 </div>
             </div>
