@@ -7,38 +7,52 @@ use Illuminate\Http\Request;
 
 class ServiciosController extends Controller
 {
+    /**
+     * Mostrar la vista principal de servicios, agrupados por categoría y subcategoría.
+     */
     public function index()
     {
-        $servicios = Servicio::all();
+        $serviciosRaw = Servicio::all();
+
+        $servicios = $serviciosRaw
+            ->groupBy('categoria')
+            ->map(function ($grupo) {
+                return $grupo->groupBy('subcategoria');
+            });
+
         return view('servicios.index', compact('servicios'));
     }
 
+    /**
+     * Mostrar la vista individual de un servicio específico.
+     */
     public function show(Servicio $servicio)
     {
-        return view('servicios.show', compact('servicios'));
+        return view('servicios.show', compact('servicio'));
     }
 
+    /**
+     * Guardar un nuevo servicio desde un formulario.
+     */
     public function guardarServicio(Request $request)
     {
-        // 1. Validar los datos del formulario
         $request->validate([
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
             'precio' => 'nullable|numeric|min:0',
+            'categoria' => 'required|string|max:255',
+            'subcategoria' => 'required|string|max:255',
         ]);
 
-        // 2. Crear una nueva instancia del modelo Servicio
         $servicio = new Servicio();
         $servicio->nombre = $request->input('nombre');
         $servicio->descripcion = $request->input('descripcion');
         $servicio->precio = $request->input('precio');
-        // Asigna los otros campos aquí
+        $servicio->categoria = $request->input('categoria');
+        $servicio->subcategoria = $request->input('subcategoria');
 
-        // 3. Guardar el servicio en la base de datos
         $servicio->save();
 
-        // 4. Redireccionar o mostrar un mensaje de éxito
-        return redirect('/servicios')->with('success', 'Servicio guardado exitosamente.'); // Redirige a la página de servicios con un mensaje
+        return redirect('/servicios')->with('success', 'Servicio guardado exitosamente.');
     }
-
 }
