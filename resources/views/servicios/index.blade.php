@@ -68,6 +68,12 @@
                                     <span class="block text-lg font-bold text-pink-500 mt-auto">
                                         ${{ number_format($servicio->precio, 0, ',', '.') }} ARS
                                     </span>
+                                    <button onclick="abrirModalDia('{{ $servicio->nombre }}')"
+                                        class="mt-4 bg-pink-500 text-white px-4 py-2 rounded hover:bg-pink-600 transition">
+                                        Reservar
+                                    </button>
+
+
                                 @endif
                             </div>
 
@@ -105,5 +111,75 @@
         });
     </script>
 
+    {{-- MODALES DEL CALENDARIO --}}
+    {{-- MODAL: Selección de día --}}
+    <div id="modal-dia" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+        <div class="bg-white p-6 rounded-lg w-full max-w-md">
+            <h2 class="text-xl font-bold mb-4">Selecciona una fecha</h2>
+            <input type="date" id="fecha-seleccionada" class="w-full border border-pink-300 p-2 rounded mb-4">
+            <div class="flex justify-between">
+                <button id="cancelar-dia" class="bg-gray-400 text-white px-4 py-2 rounded">Cancelar</button>
+                <button id="confirmar-dia" class="bg-pink-500 text-white px-4 py-2 rounded">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    {{-- MODAL: Selección de horario --}}
+    <div id="modal-horario" class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center hidden z-50">
+        <div class="bg-white p-6 rounded-lg w-full max-w-md">
+            <h2 class="text-xl font-bold mb-4">Selecciona un horario</h2>
+            <div id="horarios-disponibles" class="mb-4"></div>
+            <div class="text-right">
+                <button id="cancelar-horario" class="bg-gray-400 text-white px-4 py-2 rounded">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+         {{-- Script MODAL CALENDARIO --}}
+    <script>
+    let servicioSeleccionado = '';
+
+    function abrirModalDia(servicio) {
+        servicioSeleccionado = servicio;
+        const modalDia = document.getElementById('modal-dia');
+        if (modalDia) {
+            modalDia.classList.remove('hidden');
+        }
+    }
+
+    document.getElementById('cancelar-dia')?.addEventListener('click', () => {
+        document.getElementById('modal-dia').classList.add('hidden');
+    });
+
+    document.getElementById('confirmar-dia')?.addEventListener('click', () => {
+        const fecha = document.getElementById('fecha-seleccionada').value;
+        if (!fecha) {
+            alert('Por favor selecciona una fecha.');
+            return;
+        }
+
+        const horarios = ['10:00 AM', '12:00 PM', '2:00 PM', '4:00 PM', '6:00 PM'];
+        const contenedorHorarios = document.getElementById('horarios-disponibles');
+        contenedorHorarios.innerHTML = '';
+
+        horarios.forEach(horario => {
+            const boton = document.createElement('button');
+            boton.textContent = horario;
+            boton.className = 'block w-full bg-pink-500 text-white px-4 py-2 rounded mb-2';
+            boton.addEventListener('click', () => {
+                alert(`Has reservado "${servicioSeleccionado}" para el día ${fecha} a las ${horario}.`);
+                document.getElementById('modal-horario').classList.add('hidden');
+            });
+            contenedorHorarios.appendChild(boton);
+        });
+
+        document.getElementById('modal-dia').classList.add('hidden');
+        document.getElementById('modal-horario').classList.remove('hidden');
+    });
+
+    document.getElementById('cancelar-horario')?.addEventListener('click', () => {
+        document.getElementById('modal-horario').classList.add('hidden');
+    });
+</script>
 </body>
 </html>
